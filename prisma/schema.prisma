@@ -9,3 +9,13 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  username     String   @unique
+  platform      String?
+  wins  Int
+  kills Int
+  kdratio Float
+  winpercentage     Float
+}
