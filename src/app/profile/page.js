@@ -1,6 +1,6 @@
-export default function Home() {
+export default function page() {
     return (
-      <>
+     <>
         <header>
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
   <div class="max-w-full flex flex-wrap items-center justify-between mx-auto p-4">
@@ -27,16 +27,6 @@ export default function Home() {
   </div>
 </nav>
         </header>
-  
-        <main className="flex flex-col min-h-screen justify-center items-center">
-          <h1>Fortnite Stats Tracker</h1>
-          <div className="input-container">
-            <input type="text" placeholder="Enter your EPIC name" />
-          </div>
-        </main>
-  
-        <footer></footer>
-      </>
+        </>
     );
-  }
-  
+}
