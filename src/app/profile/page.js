@@ -29,7 +29,7 @@ export default function page() {
 </nav>
         </header>
         <main>
-          <StatsCard></StatsCard>
+          <StatsCard/>
         </main>
         </>
     );
