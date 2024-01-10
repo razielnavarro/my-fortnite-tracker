@@ -27,6 +27,9 @@ export default function page() {
   </div>
 </nav>
         </header>
+        <main>
+          
+        </main>
         </>
     );
 }
