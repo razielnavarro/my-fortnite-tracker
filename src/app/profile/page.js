@@ -1,3 +1,4 @@
+import StatsCard from '../components/StatsCard';
 export default function page() {
     return (
      <>
@@ -28,8 +29,14 @@ export default function page() {
 </nav>
         </header>
         <main>
-          
+          <StatsCard></StatsCard>
         </main>
         </>
     );
 }
+
+function statsCard(){
+  return(
+    <StatsCard></StatsCard>
+  )
+};
