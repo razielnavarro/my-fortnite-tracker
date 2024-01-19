@@ -1,3 +1,5 @@
+import StatsRetrieval from "./StatsRetrieval";
+
 function StatsCard(){
     return(
     <div className="flex justify-center items-center h-full mt-16">

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-const Stats = ({ name, accountType, timeWindow }) => {
+const StatsRetrieval = ({ name }) => {
     const [userData, setUserData] = useState(null);
+    const timeWindow = 'lifetime'; // Set timeWindow to a constant value
+    const accountType = 'epic'; // Set accountType to a constant value
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,4 +40,4 @@ const Stats = ({ name, accountType, timeWindow }) => {
     );
 };
 
-export default Stats;
+export default StatsRetrieval;
