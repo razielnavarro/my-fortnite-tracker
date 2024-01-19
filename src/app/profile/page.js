@@ -2,6 +2,8 @@ import Navbar from '../components/Navbar';
 import StatsCard from '../components/StatsCard';
 import Link from 'next/link'
 export default function page() {
+
+  
     return (
      <>
         <header>
@@ -13,9 +15,3 @@ export default function page() {
         </>
     );
 }
-
-function statsCard(){
-  return(
-    <StatsCard></StatsCard>
-  )
-};
