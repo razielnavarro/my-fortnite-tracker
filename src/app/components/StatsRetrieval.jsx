@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const StatsRetrieval = ({ name }) => {
     const [userData, setUserData] = useState(null);
-    const timeWindow = 'lifetime'; // Set timeWindow to a constant value
-    const accountType = 'epic'; // Set accountType to a constant value
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Construct the API URL with user input parameters
-                const apiUrl = `https://fortnite-api.com/v2/stats/br/v2?name=${name}&accountType=${accountType}&timeWindow=${timeWindow}`;
-                const res = await fetch(apiUrl);
+                // Make the API request to your server
+                const serverUrl = `http://localhost:3001/api/stats?name=${name}`;
+                const res = await fetch(serverUrl);
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch data');
@@ -25,7 +23,7 @@ const StatsRetrieval = ({ name }) => {
 
         // Call the fetchData function when the component mounts or when inputs change
         fetchData();
-    }, [name, accountType, timeWindow]);
+    }, [name]);
 
     return (
         <>
