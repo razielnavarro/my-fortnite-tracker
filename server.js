@@ -1,6 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
@@ -19,7 +20,7 @@ app.get('/api/stats', async (req, res) => {
 
         // Set up the Headers object with the authorization header
         const headers = new Headers();
-        headers.append('Authorization', '7f63a1da-a518-49b2-84ab-6777a1775b36');
+        headers.append('Authorization', process.env.API_KEY);
 
         // Make the API request to the Fortnite API
         const apiResponse = await fetch(apiUrl, { headers });
