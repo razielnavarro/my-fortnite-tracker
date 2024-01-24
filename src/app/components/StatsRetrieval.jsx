@@ -1,13 +1,14 @@
+// StatsRetrieval.jsx
 import React, { useState, useEffect } from 'react';
 
-const StatsRetrieval = ({ name }) => {
-    const [userData, setUserData] = useState(null);
+const StatsRetrieval = ({ name, children }) => {
+    const [imageUrl, setImageUrl] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 // Make the API request to your server
-                const serverUrl = `http://localhost:3001/api/stats?name=${name}`;
+                const serverUrl = `http://localhost:3000/api/stats?name=${name}`;
                 const res = await fetch(serverUrl);
 
                 if (!res.ok) {
@@ -15,7 +16,8 @@ const StatsRetrieval = ({ name }) => {
                 }
 
                 const data = await res.json();
-                setUserData(data);
+                setImageUrl(data.imageUrl);
+                console.log('Received imageUrl: ', data.imageUrl);
             } catch (error) {
                 console.error(error.message);
             }
@@ -25,17 +27,13 @@ const StatsRetrieval = ({ name }) => {
         fetchData();
     }, [name]);
 
-    return (
-        <>
-            {userData && (
-                <div>
-                    <h1>Player Stats</h1>
-                    <p>Username: {userData.data.username}</p>
-                    {/* Add more elements to display other relevant data */}
-                </div>
-            )}
-        </>
-    );
+    // Check if children is a function, then call it with imageUrl
+    if (typeof children === 'function') {
+        return children(imageUrl);
+    }
+
+    // Default return if children is not a function
+    return null;
 };
 
 export default StatsRetrieval;
