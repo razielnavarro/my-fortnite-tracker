@@ -1,9 +1,11 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
 
+app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 
 app.get('/api/stats', async (req, res) => {

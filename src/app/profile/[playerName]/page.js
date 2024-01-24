@@ -14,9 +14,12 @@ export default function Page() {
         <Navbar />
       </header>
       <main>
-        {/* Pass the dynamic parameter to StatsRetrieval */}
         <StatsRetrieval name={playerName}>
-          {(imageUrl) => <PlayerImage imageUrl={imageUrl} />}  {/* Use PlayerImage component */}
+          {(imageUrl) => (
+            <div className="player-image-container">
+              {imageUrl && <img src={imageUrl} alt="Player" />}
+            </div>
+          )}
         </StatsRetrieval>
       </main>
     </>
