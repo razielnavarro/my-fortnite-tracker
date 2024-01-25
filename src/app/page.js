@@ -22,8 +22,7 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const serverUrl = `http://localhost:3000/api/stats?name=${playerName}`;
-      const res = await fetch(serverUrl);
+      const res = await fetch(`/api/stats?name=${playerName}`);
 
       if (!res.ok) {
         throw new Error('Failed to fetch data xd');
