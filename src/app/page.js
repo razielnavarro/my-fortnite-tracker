@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import Navbar from './components/Navbar';
 import Link from 'next/link';
 import StatsRetrieval from './components/StatsRetrieval';
+import ViewStats from './components/ViewStats';
+import InputText from './components/inputText';
 
 export default function Home() {
   const [playerName, setPlayerName] = useState('');
@@ -43,16 +45,14 @@ export default function Home() {
 
       <main className="flex flex-col min-h-screen justify-center items-center">
         <h1>Fortnite Stats Tracker</h1>
-        <div className="input-container">
-          <input
-            type="text"
-            placeholder="Enter your EPIC name"
+        <div className="input-container flex items-center">
+          <InputText placeholder="Enter your EPIC name"
             value={playerName}
-            onChange={handleInputChange}
-            style={{ color: playerName.length > 0 ? 'blue' : 'black' }}
-          />
+            onChange={handleInputChange}/>
           {/* Trigger the fetchData function on button click */}
-          <button onClick={handleViewStatsClick}>View Stats</button>
+          <div className="ml-1">
+          <ViewStats onClick={handleViewStatsClick}/>
+          </div>
         </div>
         {/* Pass the input value and the onFetch function to StatsRetrieval */}
         <StatsRetrieval name={playerName} onFetch={setFetchedData} />
