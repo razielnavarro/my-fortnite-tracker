@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-app.use(cors()); // Enable CORS for all routes
+app.use(cors({origin: 'http://localhost:3000'})); // Enable CORS for all routes
 app.use(express.json());
 
 app.get('/api/stats', async (req, res) => {

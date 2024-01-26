@@ -1,34 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// StatsRetrieval.jsx
+import React, { useEffect } from 'react';
 
 const StatsRetrieval = ({ name, onFetch }) => {
-  const [imageUrl, setImageUrl] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const serverUrl = `/api/stats?name=${name}`;
-        const response = await axios.get(serverUrl);
+        const res = await fetch(`/api/stats?name=${name}`);
 
-        if (response.status !== 200) {
+        if (!res.ok) {
           throw new Error('Failed to fetch data xd');
         }
 
-        const data = response.data;
-        setImageUrl(data.data.image);
-        onFetch(data);  // Notify the parent component about the fetched data
+        const data = await res.json();
+        // Update the state in the parent component using onFetch prop
+        onFetch(data);
       } catch (error) {
         console.error(error.message);
       }
     };
 
-    fetchData();  // Call fetchData when the component mounts or when 'name' changes
+    // Fetch data when the name prop changes
+    if (name) {
+      fetchData();
+    }
   }, [name, onFetch]);
 
   return (
     <div>
-      {imageUrl && <img src={imageUrl} alt="Player" />}
-      {/* No need for a new button, as it will be triggered from the parent component */}
+      {/* You can add any rendering logic for the fetched data here */}
     </div>
   );
 };
