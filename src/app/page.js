@@ -2,12 +2,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from './components/Navbar';
-import Link from 'next/link';
 import StatsRetrieval from './components/StatsRetrieval';
 import ViewStats from './components/ViewStats';
 import InputText from './components/inputText';
-import background from '../../public/background.png';
-import Image from 'next/image';
 
 export default function Home() {
   const [playerName, setPlayerName] = useState('');

@@ -27,7 +27,7 @@ const StatsRetrieval = ({ name, onFetch }) => {
 
   return (
     <div>
-      {/* You can add any rendering logic for the fetched data here */}
+      
     </div>
   );
 };
