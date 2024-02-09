@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from './components/Navbar';
-import StatsRetrieval from './components/StatsRetrieval';
 import ViewStats from './components/ViewStats';
 import InputText from './components/inputText';
 
@@ -15,22 +14,21 @@ export default function Home() {
     setPlayerName(event.target.value);
   };
 
-  const handleViewStatsClick = async () => {
-    await fetchData();
-    // Redirect to the profile page after fetching the data
-    router.push(`/profile/${encodeURIComponent(playerName)}`);
-  };
-
-  const fetchData = async () => {
+  const makeApiCall = async () => {
     try {
-      const res = await fetch(`/api/stats?name=${playerName}`);
+      const res = await fetch('/api/stats', {
+        method: 'GET'
+      });
 
       if (!res.ok) {
-        throw new Error('Failed to fetch data xd');
+        throw new Error('Failed to fetch data');
       }
 
       const data = await res.json();
       setFetchedData(data);
+
+      // Redirect to the profile page after fetching the data
+      router.push(`/profile/${encodeURIComponent(playerName)}`);
     } catch (error) {
       console.error(error.message);
     }
@@ -42,21 +40,26 @@ export default function Home() {
         <Navbar />
       </header>
       <main className="flex flex-col min-h-screen justify-center items-center mb-1">
-        {/* <div className='absolute -z-10 w-full'>
-        <Image src={background} alt='background image' className='w-full'/>
-        </div> */}
         <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
+        
         <div className="input-container flex items-center">
-          <InputText placeholder="Enter your EPIC name"
-            value={playerName}
-            onChange={handleInputChange}/>
-          {/* Trigger the fetchData function on button click */}
+
+        <form action='/api/stats' method='GET'>
+          <label htmlFor='username'>
+          <input className='block h-12 w-full rounded-md border border-slate-800 bg-black px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 focus:ring-offset-slate-50' 
+          placeholder='Enter your EPIC name' 
+          name='username' 
+          type='text'
+          id='username'/>
+          </label>
           <div className="ml-1">
-          <ViewStats onClick={handleViewStatsClick}/>
+          <button className='inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50'
+          type='submit'
+          >View Stats</button>
           </div>
+        </form>
         </div>
-        {/* Pass the input value and the onFetch function to StatsRetrieval */}
-        <StatsRetrieval name={playerName} onFetch={setFetchedData} />
+
         <section className='flex justify-center items-center mt-20'>
         <div class="relative overflow-x-auto">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
