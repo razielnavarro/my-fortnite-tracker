@@ -2,29 +2,25 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from './components/Navbar';
-import ViewStats from './components/ViewStats';
-import InputText from './components/inputText';
 
 export default function Home() {
-  const [playerName, setPlayerName] = useState('');
   const [fetchedData, setFetchedData] = useState(null);
   const router = useRouter();
 
-  const handleInputChange = (event) => {
-    setPlayerName(event.target.value);
-  };
-
-  const makeApiCall = async () => {
+  const makeApiCall = async (event) => {
+    event.preventDefault()
     try {
-      const res = await fetch('/api/stats', {
-        method: 'GET'
+      const formData = new FormData(event.target)
+      const playerName = formData.get('username');
+      const response = await fetch('/api/stats?name=${playerName}', {
+        method: 'GET',
       });
 
-      if (!res.ok) {
-        throw new Error('Failed to fetch data');
+      if (!response.ok) {
+        throw new Error('Failed to fetch dataD xXdDX');
       }
 
-      const data = await res.json();
+      const data = await response.json();
       setFetchedData(data);
 
       // Redirect to the profile page after fetching the data
@@ -42,9 +38,8 @@ export default function Home() {
       <main className="flex flex-col min-h-screen justify-center items-center mb-1">
         <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
         
-        <div className="input-container flex items-center">
 
-        <form action='/api/stats' method='GET'>
+        <form className='flex items-center' action='/api/stats' method='GET' onSubmit={makeApiCall}>
           <label htmlFor='username'>
           <input className='block h-12 w-full rounded-md border border-slate-800 bg-black px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 focus:ring-offset-slate-50' 
           placeholder='Enter your EPIC name' 
@@ -58,7 +53,8 @@ export default function Home() {
           >View Stats</button>
           </div>
         </form>
-        </div>
+
+        {/* Section below the input field which shows leaderboards */}
 
         <section className='flex justify-center items-center mt-20'>
         <div class="relative overflow-x-auto">
