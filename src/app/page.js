@@ -4,31 +4,22 @@ import { useRouter } from 'next/navigation';
 import Navbar from './components/Navbar';
 
 export default function Home() {
-  const [fetchedData, setFetchedData] = useState(null);
   const router = useRouter();
 
   const makeApiCall = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
+  
     try {
-      const formData = new FormData(event.target)
-      const playerName = formData.get('username');
-      const response = await fetch('/api/stats?name=${playerName}', {
-        method: 'GET',
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch dataD xXdDX');
-      }
-
-      const data = await response.json();
-      setFetchedData(data);
-
-      // Redirect to the profile page after fetching the data
-      router.push(`/profile/${encodeURIComponent(playerName)}`);
+      const formData = new FormData(event.target);
+      const name = formData.get('name');
+  
+      // Redirect to the profile page after submitting the form
+      router.push(`/profile/${encodeURIComponent(name)}`);
     } catch (error) {
       console.error(error.message);
     }
   };
+  
 
   return (
     <>
@@ -40,12 +31,12 @@ export default function Home() {
         
 
         <form className='flex items-center' action='/api/stats' method='GET' onSubmit={makeApiCall}>
-          <label htmlFor='username'>
+          <label htmlFor='name'>
           <input className='block h-12 w-full rounded-md border border-slate-800 bg-black px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 focus:ring-offset-slate-50' 
           placeholder='Enter your EPIC name' 
-          name='username' 
+          name='name' 
           type='text'
-          id='username'/>
+          id='name'/>
           </label>
           <div className="ml-1">
           <button className='inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50'

@@ -19,7 +19,6 @@ export default async function handler(req, res) {
 
       // Extract the image URL from the data
       const imageUrl = data.data.image;
-
       res.status(200).json({ imageUrl });
     } catch (error) {
       console.error(error.message);
