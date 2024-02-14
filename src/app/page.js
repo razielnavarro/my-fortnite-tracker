@@ -1,49 +1,34 @@
-'use client';
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Navbar from './components/Navbar';
 
 export default function Home() {
-  const router = useRouter();
-
-  const makeApiCall = async (event) => {
-    event.preventDefault();
-  
-    try {
-      const formData = new FormData(event.target);
-      const name = formData.get('name');
-  
-      // Redirect to the profile page after submitting the form
-      router.push(`/profile/${encodeURIComponent(name)}`);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-  
-
   return (
     <>
       <header>
         <Navbar />
       </header>
       <main className="flex flex-col min-h-screen justify-center items-center mb-1">
-        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
+        <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
         
-
-        <form className='flex items-center' action='/api/stats' method='GET' onSubmit={makeApiCall}>
-          <label htmlFor='name'>
-          <input className='block h-12 w-full rounded-md border border-slate-800 bg-black px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 focus:ring-offset-slate-50' 
-          placeholder='Enter your EPIC name' 
-          name='name' 
-          type='text'
-          id='name'/>
+        <form className="flex items-center" action="/api/stats" method="POST">
+          <label htmlFor="name">
+            <input
+              className="block h-12 w-full rounded-md border border-slate-800 bg-black px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 focus:ring-offset-slate-50"
+              placeholder="Enter your EPIC name"
+              name="name"
+              type="text"
+              id="name"
+            />
           </label>
           <div className="ml-1">
-          <button className='inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50'
-          type='submit'
-          >View Stats</button>
+            <button
+              className="inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+              type="submit"
+            >
+              View Stats
+            </button>
           </div>
         </form>
+
 
         {/* Section below the input field which shows leaderboards */}
 

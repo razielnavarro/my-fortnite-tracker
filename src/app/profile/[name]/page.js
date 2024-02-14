@@ -1,13 +1,8 @@
-'use client'
-import { useRouter } from 'next/navigation';
+import React from 'react';
 import Navbar from '../../components/Navbar';
-import { useEffect, useState } from 'react';
 
-export default function Profile() {
-  const router = useRouter();
-  const { name } = router.query || {};
-  const imageUrl = `/api/stats?name=` + name; // Assuming your API route is correctly configured
-
+// Profile component
+export default function Profile({ name, imageUrl }) {
   return (
     <>
       <header>
