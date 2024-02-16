@@ -1,10 +1,14 @@
 'use client'
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
+import { useRouter } from 'next/navigation';
+
+
 
 export default function Home() {
 
   const [statsData, setStatsData] = useState(null);
+  const router = useRouter();
   
   const fetchPlayers = async (name, accountType, timeWindow, image) => {
     try {
@@ -37,7 +41,18 @@ export default function Home() {
 
     try {
       const data = await fetchPlayers(name, accountType, timeWindow, image);
-      setStatsData(data);
+
+      // Check if the data is not empty or undefined
+      if (data && data.data) {
+        setStatsData(data.data);
+
+        // Log the received data to the console
+        console.log('Received Data:', data.data);
+        router.push(`/profile/${encodeURIComponent(name)}`);
+      } else {
+        // Handle the case where the data is not as expected
+        console.error('Invalid data received from the API');
+      }
     } catch (error) {
       // Handle error (display a message to the user, etc.)
     }
