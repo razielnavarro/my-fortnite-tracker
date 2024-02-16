@@ -1,6 +1,48 @@
+'use client'
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 
 export default function Home() {
+
+  const [statsData, setStatsData] = useState(null);
+  
+  const fetchPlayers = async (name, accountType, timeWindow, image) => {
+    try {
+      const apiUrl = `https://fortnite-api.com/v2/stats/br/v2?name=${name}&accountType=${accountType}&timeWindow=${timeWindow}&image=${image}`;
+      const response = await fetch(apiUrl, {
+        headers: {
+          'Authorization': '7f63a1da-a518-49b2-84ab-6777a1775b36',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error.message);
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const name = formData.get('name');
+    const accountType = 'epic';
+    const timeWindow = 'lifetime';
+    const image = 'all';
+
+    try {
+      const data = await fetchPlayers(name, accountType, timeWindow, image);
+      setStatsData(data);
+    } catch (error) {
+      // Handle error (display a message to the user, etc.)
+    }
+  };
+
   return (
     <>
       <header>
@@ -9,7 +51,7 @@ export default function Home() {
       <main className="flex flex-col min-h-screen justify-center items-center mb-1">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
         
-        <form className="flex items-center" action="/api/stats" method="POST">
+        <form className="flex items-center" onSubmit={handleSubmit}>
           <label htmlFor="name">
             <input
               className="block h-12 w-full rounded-md border border-slate-800 bg-black px-3 py-2 focus:outline-none focus:ring-1 focus:ring-slate-400 focus:ring-offset-1 focus:ring-offset-slate-50"
@@ -28,7 +70,6 @@ export default function Home() {
             </button>
           </div>
         </form>
-
 
         {/* Section below the input field which shows leaderboards */}
 

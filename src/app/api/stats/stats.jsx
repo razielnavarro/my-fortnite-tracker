@@ -1,39 +1,26 @@
-// pages/api/createProfile.js
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
+import { redirect } from "next/navigation";
+export default async function GET(req, res) {
+  if (req.method === 'GET') {
     try {
-      const formData = new FormData(req);
-      const playerName = formData.get('name');
+      const name = await req.json;
       const timeWindow = 'lifetime';
       const accountType = 'epic';
       const image = 'all';
 
-      const apiUrl = `https://fortnite-api.com/v2/stats/br/v2?name=${playerName}&accountType=${accountType}&timeWindow=${timeWindow}&image=${image}`;
+      const apiUrl = `https://fortnite-api.com/v2/stats/br/v2?name=${name}&accountType=${accountType}&timeWindow=${timeWindow}&image=${image}`;
+
+      // Set up the Headers object with the authorization header
+      const headers = new Headers();
+      headers.append('Authorization', process.env.API_KEY);
 
       // Make the API request to the Fortnite API
-      const apiResponse = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          Authorization: process.env.API_KEY
-        },
-      });
-
-
+      const apiResponse = await fetch(apiUrl, { headers });
       const data = await apiResponse.json();
-
-      if (!apiResponse.ok) {
-        // Log the entire response for debugging
-        console.error('Fortnite API Error:', data);
-        throw new Error('Failed to fetch Fortnite API data');
-      }
 
       // Extract the image URL from the data
       const imageUrl = data.data.image;
-
-      // You can perform any server-side logic here (e.g., saving to a database)
-
-      // Redirect to the profile page after creating the profile
-      res.redirect(`/profile/${encodeURIComponent(playerName)}`);
+      res.status(200).json({ imageUrl });
+      redirect('/profile/${encodeURIComponent(name)}')
     } catch (error) {
       console.error(error.message);
       res.status(500).json({ error: 'Internal Server Error' });
