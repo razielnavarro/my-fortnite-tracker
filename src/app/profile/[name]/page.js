@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Navbar from '../../components/Navbar';
+import Link from 'next/link';
 
 export default function Profile() {
   const searchParams = useSearchParams();
@@ -63,6 +64,10 @@ export default function Profile() {
               </figure>
             </div>
             {/* Display other information from statsData */}
+            <div className='flex justify-center items-center'>
+            <Link legacyBehavior href="/"><a className='inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50'>
+              Look for another player</a></Link>
+            </div>
           </>
         )}
       </main>
