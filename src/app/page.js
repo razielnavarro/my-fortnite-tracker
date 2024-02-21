@@ -14,7 +14,7 @@ export default function Home() {
         <Navbar />
       </header>
       <main className='min-h-screen bg-backgroundDark'>
-      <section className="flex flex-col h-[40vh] justify-center items-center mb-1" style={{backgroundImage: 'url("background2.png")'}}>
+      <section className="flex flex-col h-[40vh] justify-center items-center mb-1" style={{backgroundImage: 'url("/background/background.png")'}}>
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
       <div className="flex items-center">
       <label htmlFor="name">
@@ -33,9 +33,9 @@ export default function Home() {
             href={{
             pathname: `/profile/${name}`,
             query: {
-            name: name,
-      },
+            name: name, },
     }}
+    prefetch={true}
     ><a className='inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50'>View Stats</a></Link>
     </div>
     </div>
