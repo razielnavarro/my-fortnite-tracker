@@ -13,9 +13,9 @@ export default function Home() {
       <header>
         <Navbar />
       </header>
-      <main className="flex flex-col min-h-screen justify-center items-center mb-1">
+      <main className='min-h-screen bg-backgroundDark'>
+      <section className="flex flex-col h-[40vh] justify-center items-center mb-1" style={{backgroundImage: 'url("background2.png")'}}>
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
-
       <div className="flex items-center">
       <label htmlFor="name">
         <input
@@ -36,16 +36,17 @@ export default function Home() {
             name: name,
       },
     }}
-    ><a className='inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50'>
-        View Stats</a></Link>
+    ><a className='inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50'>View Stats</a></Link>
     </div>
     </div>
+    </section>
     
         {/* Section below the input field which shows leaderboards */}
 
-        <section className='flex justify-center items-center mt-20'>
-        <div class="relative overflow-x-auto">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+<section className='flex flex-col items-center mt-20'>
+    <h1 className="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Leaderboards</h1>
+    <div className="relative overflow-x-auto">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
@@ -86,7 +87,6 @@ export default function Home() {
 </div>
       </section>
       </main>
-      <footer></footer>
     </>
   );
 }

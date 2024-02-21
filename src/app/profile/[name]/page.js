@@ -52,19 +52,19 @@ export default function Profile() {
       <header>
         <Navbar />
       </header>
-      <main>
+      <main className='min-h-screen bg-backgroundDark'>
         {/* Display the image and other information using statsData */}
         {/* Check if statsData is not null before accessing properties */}
         {statsData && (
           <>
-            <div className='flex justify-center items-center py-9'>
+            <div className='flex justify-center items-center'>
             <figure>
               <img className="h-auto max-w-full rounded-lg"src={statsData.image} alt="Stats Image" />
               <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">{name} stats</figcaption>
               </figure>
             </div>
             {/* Display other information from statsData */}
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center pt-4'>
             <Link legacyBehavior href="/"><a className='inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-gradient-to-t from-[#35495e] from-0% to-[#2c3e50] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50'>
               Look for another player</a></Link>
             </div>
