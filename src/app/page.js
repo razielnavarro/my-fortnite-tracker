@@ -41,50 +41,11 @@ export default function Home() {
     </div>
     </section>
     
-        {/* Section below the input field which shows leaderboards */}
+        {/* Section below the input field which shows item shop */}
 
 <section className='flex flex-col items-center mt-20'>
-    <h1 className="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Leaderboards</h1>
-    <div className="relative overflow-x-auto">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Player
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Wins
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Ananda
-                </th>
-                <td class="px-6 py-4">
-                    3210
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Razant
-                </th>
-                <td class="px-6 py-4">
-                    2911
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Antonio
-                </th>
-                <td class="px-6 py-4">
-                    1952
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <h1 className="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Daily item shop</h1>
+
       </section>
       </main>
     </>
