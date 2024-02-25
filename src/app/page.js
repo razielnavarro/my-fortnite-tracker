@@ -37,7 +37,6 @@ export default function Home() {
     fetchItemShopData();
 }, []);
 
-
   return (
     <>
       <header>
@@ -74,20 +73,23 @@ export default function Home() {
         {/* Section below the input field which shows item shop */}
 
 <section className='flex flex-col items-center mt-20'>
-    <h1 className="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Daily item shop</h1>
-    <div className='grid grid-cols-6 gap-4'>
-      {itemShopData && itemShopData.featured && itemShopData.featured.map((item) => (
-        <div key={item.id} className="text-center">
-        <img
-        src={item.images.gallery}
-        alt={item.name}
-        className="h-40 w-40 object-cover mx-auto mb-2"/>
-        <p className="text-white">{item.name}</p>
-        <p className="text-green-500">{`${item.price} ${item.priceIcon}`}</p>
+  <h1 className="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Daily item shop</h1>
+  <div className='grid grid-cols-6 gap-4'>
+    {itemShopData &&
+      itemShopData.featured &&
+      itemShopData.featured.map((item) => (
+        <div key={item.id} className="text-center" style={{ backgroundImage: `url(/Rarity/${item.rarity.toLowerCase()}.png)` }}>
+          <img
+            src={item.images.featured || item.images.icon}
+            alt={item.name}
+            className="h-40 w-40 object-cover mx-auto mb-2"
+          />
+          <p className="text-white">{item.name}</p>
+          <p className="text-green-500">{`${item.price} ${item.priceIcon}`}</p>
         </div>
       ))}
-    </div>
-      </section>
+  </div>
+</section>
       </main>
     </>
   );
