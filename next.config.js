@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    reactStrictMode: true,
-    images: {
-      loader: "Razant",
-      path: "/",
-    },
-  };
+const nextConfig = {}
+
 module.exports = nextConfig
