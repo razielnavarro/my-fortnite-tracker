@@ -56,20 +56,16 @@ export default function Home() {
   useEffect(() => {
     const fetchItemShopData = async () => {
       try {
-        const apiUrl = "https://fnbr.co/api/shop";
-        const response = await fetch(apiUrl, {
-          headers: {
-            'x-api-key': apiKey
-          },
-        });
+        const apiUrl = "/api/shop"; // Use the local API route
+        const response = await fetch(apiUrl);
 
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
 
         const data = await response.json();
-        setItemShopData(data.data);
-        console.log("Item Shop Data:", data.data);
+        setItemShopData(data);
+        console.log("Item Shop Data:", data);
       } catch (error) {
         console.error(error.message);
       }
