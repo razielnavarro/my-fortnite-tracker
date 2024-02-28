@@ -7,9 +7,3 @@ body {
     margin: 0;
     padding: 0;
   }
-  
-@media (prefers-color-scheme: dark) {
-  body {
-    color-scheme: light;
-  }
-}
