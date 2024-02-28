@@ -56,7 +56,7 @@ export default function Home() {
   useEffect(() => {
     const fetchItemShopData = async () => {
       try {
-        const apiUrl = "/api/shop"; // Use the local API route
+        const apiUrl = "/api/shop";
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
