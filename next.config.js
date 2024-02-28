@@ -1,8 +1,3 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    images: {
-        loader: "Razant",
-        path: "/",
-    },
-};
+const nextConfig = {}
 module.exports = nextConfig
