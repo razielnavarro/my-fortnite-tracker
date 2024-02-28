@@ -16,7 +16,7 @@ const ItemGroup = ({ items }) => {
   }, [items]);
 
   const currentImage = items[currentItemIndex].images.featured || items[currentItemIndex].images.icon;
-  const backgroundImagePath = `/Rarity/${items[0].rarity.toLowerCase()}.png`;
+  const backgroundImagePath = `${process.env.NEXT_PUBLIC_BASE_URL}/Rarity/${items[0].rarity.toLowerCase()}.png`;
   const VbucksIcon = '/assets/vbucks.webp';
 
   return (
