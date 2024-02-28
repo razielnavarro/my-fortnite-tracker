@@ -8,42 +8,26 @@ export default function Profile() {
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
   const [statsData, setStatsData] = useState(null);
-  const apiKey = process.env.NEXT_PUBLIC_FORTNITE_API_KEY;
 
   useEffect(() => {
-    const fetchPlayers = async () => {
+    const fetchStatsData = async () => {
       try {
-        const accountType = 'epic';
-        const timeWindow = 'lifetime';
-        const image = 'all';
-
-        const apiUrl = `https://fortnite-api.com/v2/stats/br/v2?name=${name}&accountType=${accountType}&timeWindow=${timeWindow}&image=${image}`;
-
-        const response = await fetch(apiUrl, {
-          headers: {
-            'Authorization': apiKey,
-          },
-        });
+        const apiUrl = `/api/stats?name=${name}`;
+        const response = await fetch(apiUrl);
 
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
 
         const data = await response.json();
-
-        if (data && data.data) {
-          setStatsData(data.data);
-          console.log('Received Data:', data.data);
-        } else {
-          console.error('Invalid data received from the API');
-        }
+        setStatsData(data);
       } catch (error) {
-        console.error(error.message);
+        console.error('Error fetching data:', error.message);
       }
     };
 
     if (name) {
-      fetchPlayers();
+      fetchStatsData();
     }
   }, [name]);
 
