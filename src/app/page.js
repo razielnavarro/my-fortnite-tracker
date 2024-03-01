@@ -93,7 +93,7 @@ export default function Home() {
       </header>
       <main className='min-h-screen bg-backgroundDark'>
         <section className="flex flex-col h-[40vh] justify-center items-center mb-1" style={{ backgroundImage: 'url("/background/background.png")', backgroundSize: 'cover', backgroundPosition: 'top' }}>
-          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-gray-900 md:text-5xl lg:text-6xl">Fortnite Stats Tracker</h1>
           <div className="flex items-center">
             <label htmlFor="name">
               <input
