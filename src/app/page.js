@@ -36,7 +36,7 @@ const ItemGroup = ({ items }) => {
 const ItemSection = ({ section, itemShopData }) => {
   return (
     <section key={section.key} className='flex flex-col items-center mb-8'>
-      <h2 className="mb-4 text-center text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl dark:text-white">{section.displayName}</h2>
+      <h2 className="mb-4 text-center text-3xl font-extrabold leading-none tracking-tight text-white md:text-2xl lg:text-3xl">{section.displayName}</h2>
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 mb-5xz'>
         {section.items.map((itemId) => {
           const foundItem = itemShopData.featured.find((item) => item.id === itemId);
@@ -93,7 +93,7 @@ export default function Home() {
       </header>
       <main className='min-h-screen bg-backgroundDark'>
         <section className="flex flex-col h-[40vh] justify-center items-center mb-1" style={{ backgroundImage: 'url("/background/background.png")', backgroundSize: 'cover', backgroundPosition: 'top' }}>
-          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Fortnite Stats Tracker</h1>
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">Fortnite Stats Tracker</h1>
           <div className="flex items-center">
             <label htmlFor="name">
               <input
@@ -124,7 +124,7 @@ export default function Home() {
         
         {/* Section below the input field which shows item shop */}
         <section className='flex flex-col items-center mt-12'>
-          <h1 className="mb-20 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Daily item shop</h1>
+          <h1 className="mb-20 text-center text-4xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-4xl">Daily item shop</h1>
           {itemShopData &&
             itemShopData.sections &&
             itemShopData.sections.map((section) => (
@@ -133,7 +133,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer class="bg-white border-gray-200 dark:bg-gray-900 md:flex md:items-center md:justify-between p-4 md:p-6 xl:p-8">
+      <footer class="bg-gray-900 border-gray-200 md:flex md:items-center md:justify-between p-4 md:p-6 xl:p-8">
         <span className='text-sm font-normal text-white-500 mr-4 md:mr-6'>@2024 Raziel</span>
     <div class="flex sm:justify-center space-x-6">
         <a href="https://www.linkedin.com/in/razielnavarro/" class="text-white-500 hover:text-gray-900">
