@@ -20,7 +20,7 @@ const ItemGroup = ({ items }) => {
   const VbucksIcon = '/assets/vbucks.webp';
 
   return (
-    <div className="text-center relative" style={{ backgroundImage: `url(${backgroundImagePath})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', width: '256px', height: '256px'}}>
+    <div className="text-center relative px-2" style={{ backgroundImage: `url(${backgroundImagePath})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', width: '256px', height: '256px'}}>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <img src={currentImage} alt={items[0].name} className="h-40 w-40 object-cover mb-2" />
         <p className="text-white font-bold">{items[0].name}</p>
@@ -31,16 +31,17 @@ const ItemGroup = ({ items }) => {
       </div>
     </div>
   );
+  
 };
 
 const ItemSection = ({ section, itemShopData }) => {
   return (
     <section key={section.key} className='flex flex-col items-center mb-8'>
       <h2 className="mb-4 text-center text-3xl font-extrabold leading-none tracking-tight text-white md:text-2xl lg:text-3xl">{section.displayName}</h2>
-      <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 mb-5xz'>
+      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-5'>
         {section.items.map((itemId) => {
           const foundItem = itemShopData.featured.find((item) => item.id === itemId);
-          return foundItem ? <ItemGroup key={itemId} items={[foundItem]} /> : null;
+          return foundItem ? <ItemGroup key={itemId} items={[foundItem]}  /> : null;
         })}
       </div>
     </section>
