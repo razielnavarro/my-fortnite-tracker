@@ -1,5 +1,6 @@
 'use client'
 import Navbar from './components/Navbar';
+import Countdown from './components/Countdown';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from "react";
@@ -125,7 +126,10 @@ export default function Home() {
         
         {/* Section below the input field which shows item shop */}
         <section className='flex flex-col items-center mt-12'>
-          <h1 className="mb-20 text-center text-4xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-4xl">Daily item shop</h1>
+          <h1 className="mb-2 text-center text-4xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-4xl">Daily item shop</h1>
+          <div className='mb-20'>
+            <Countdown />
+          </div>
           {itemShopData &&
             itemShopData.sections &&
             itemShopData.sections.map((section) => (

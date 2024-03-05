@@ -1,33 +1,50 @@
-function Countdown(){
-    const [countdown, setCountdown] = useState({ hours: 0, minutes: 0, seconds: 0 });
-    useEffect(() => {
-        const targetTime = new Date();
-        targetTime.setHours(10);  // Replace with your target hour
-        targetTime.setMinutes(50);  // Replace with your target minute
-        targetTime.setSeconds(0);  // Replace with your target second
-    
-        const updateCountdown = () => {
-          const now = new Date();
-          const difference = targetTime.getTime() - now.getTime();
-    
-          if (difference > 0) {
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-    
-            setCountdown({ hours, minutes, seconds });
-          }
-        };
-    
-        const intervalId = setInterval(updateCountdown, 1000);
-    
-        // Cleanup interval on component unmount
-        return () => clearInterval(intervalId);
-      }, []);
-    
+import React, { useEffect, useState } from 'react';
+import Countdown from 'react-countdown';
+import moment from 'moment-timezone';
+
+const CountdownTimer = () => {
+  const [targetTime, setTargetTime] = useState(getNextResetTime());
+
+  function getNextResetTime() {
+    const now = moment().tz('America/New_York');
+    const resetTime = moment().tz('America/New_York').set({ hour: 19, minute: 0, second: 0, millisecond: 0 });
+
+    if (now.isAfter(resetTime)) {
+      // If the current time is after the reset time, set the reset time for the next day
+      return resetTime.add(1, 'days');
+    }
+
+    return resetTime;
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTargetTime(getNextResetTime());
+    }, 60000); // Update every minute to handle timezone changes
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Reset the countdown when it completes
+      setTargetTime(getNextResetTime());
+      return <span>New item shop in 24:00:00</span>;
+    } else {
+      // Format the time as needed (e.g., add leading zeros)
+      const formattedHours = String(hours).padStart(2, '0');
+      const formattedMinutes = String(minutes).padStart(2, '0');
+      const formattedSeconds = String(seconds).padStart(2, '0');
+
       return (
-        <div>
-          <p>Next item shop in {`${countdown.hours}:${countdown.minutes}:${countdown.seconds}`}</p>
-        </div>
+        <span>
+          New item shop in {formattedHours}:{formattedMinutes}:{formattedSeconds}
+        </span>
       );
-    };
+    }
+  };
+
+  return <Countdown date={targetTime} renderer={renderer} />;
+};
+
+export default CountdownTimer;
