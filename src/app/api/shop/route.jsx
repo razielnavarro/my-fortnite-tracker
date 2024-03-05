@@ -9,6 +9,9 @@ export async function GET(req, res) {
         headers: {
           'x-api-key': apiKey
         },
+        next: {
+          revalidate: 60
+        }
       });
   
       if (!response.ok) {
