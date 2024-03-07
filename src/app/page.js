@@ -51,18 +51,50 @@ const ItemGroup = ({ items }) => {
 };
 
 const ItemSection = ({ section, itemShopData }) => {
+  // Group items by name
+  const groupedItems = itemShopData && itemShopData.featured
+    ? itemShopData.featured.reduce((groups, item) => {
+      const itemName = item.name;
+      if (!groups[itemName]) {
+        groups[itemName] = [];
+      }
+      groups[itemName].push(item);
+      return groups;
+    }, {})
+    : {};
+
+  // Filter items in the current section
+  const sectionItems = section.items
+    .map((itemId) => itemShopData.featured.find((item) => item.id === itemId))
+    .filter(Boolean);
+
+  // Keep track of processed item names
+  const processedItemNames = new Set();
+
   return (
     <section key={section.key} className='flex flex-col items-center mb-8'>
       <h2 className="mb-4 text-center text-3xl font-extrabold leading-none tracking-tight text-white md:text-2xl lg:text-3xl">{section.displayName}</h2>
       <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-5'>
-        {section.items.map((itemId) => {
-          const foundItem = itemShopData.featured.find((item) => item.id === itemId);
-          return foundItem ? <ItemGroup key={itemId} items={[foundItem]}  /> : null;
+        {sectionItems.map((sectionItem) => {
+          const itemName = sectionItem.name;
+
+          if (!processedItemNames.has(itemName)) {
+            const itemsWithSameName = groupedItems[itemName];
+            processedItemNames.add(itemName);
+
+            if (itemsWithSameName) {
+              return <ItemGroup key={itemName} items={itemsWithSameName} />;
+            }
+          }
+
+          return null;
         })}
       </div>
     </section>
   );
 };
+
+
 
 export default function Home() {
   const router = useRouter();
