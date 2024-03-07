@@ -1,9 +1,11 @@
 'use client'
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -14,7 +16,7 @@ function Navbar() {
       <div className="max-w-full flex flex-wrap items-center justify-between mx-auto p-4">
         <Link prefetch={true} href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="/navbar/logo.png" className="h-8" alt="Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Fortnite Tracker</span>
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Fortnite Hub</span>
         </Link>
         <button
           onClick={toggleMenu}
@@ -46,7 +48,20 @@ function Navbar() {
         >
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <a href="#" className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
+            <Link
+                legacyBehavior
+                href={{
+                  pathname: `/`,
+                }}
+              >
+                <a
+                  className={`block py-2 px-3 ${
+                    pathname === '/' ? 'text-blue-700' : 'text-white hover:text-blue-700'
+                  } rounded md:bg-transparent md:p-0`}
+                >
+                  Home
+                </a>
+              </Link>
             </li>
             <li>
               <Link
@@ -55,7 +70,13 @@ function Navbar() {
                   pathname: `/about`,
                 }}
               >
-                <a className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+                <a
+                  className={`block py-2 px-3 ${
+                    pathname === '/about' ? 'text-blue-700' : 'text-white hover:text-blue-700'
+                  } md:p-0`}
+                >
+                  About
+                </a>
               </Link>
             </li>
           </ul>
