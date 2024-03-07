@@ -29,7 +29,7 @@ const CountdownTimer = () => {
     if (completed) {
       // Reset the countdown when it completes
       setTargetTime(getNextResetTime());
-      return <span>New item shop in 24:00:00</span>;
+      return <span>Refreshes in 24:00:00</span>;
     } else {
       // Format the time as needed (e.g., add leading zeros)
       const formattedHours = String(hours).padStart(2, '0');
@@ -37,8 +37,8 @@ const CountdownTimer = () => {
       const formattedSeconds = String(seconds).padStart(2, '0');
 
       return (
-        <span>
-          New item shop in {formattedHours}:{formattedMinutes}:{formattedSeconds}
+        <span className='text-base'>
+          Refreshes in {formattedHours}:{formattedMinutes}:{formattedSeconds}
         </span>
       );
     }

@@ -21,7 +21,22 @@ const ItemGroup = ({ items }) => {
   const VbucksIcon = '/assets/vbucks.webp';
 
   return (
-    <div className="text-center relative px-2" style={{ backgroundImage: `url(${backgroundImagePath})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', width: '256px', height: '256px'}}>
+    <div className="text-center relative px-2" 
+    style={{ 
+      position: 'relative',
+      width: '100%', 
+      height: 'auto',
+      overflow: 'hidden',
+    }}>
+    <img 
+      src={backgroundImagePath} 
+      alt="Background" 
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+      }} 
+    />
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <img src={currentImage} alt={items[0].name} className="h-40 w-40 object-cover mb-2" />
         <p className="text-white font-bold">{items[0].name}</p>
