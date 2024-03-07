@@ -38,11 +38,11 @@ const ItemGroup = ({ items }) => {
       }} 
     />
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <img src={currentImage} alt={items[0].name} className="h-40 w-40 object-cover mb-2" />
-        <p className="text-white font-bold">{items[0].name}</p>
+        <img src={currentImage} alt={items[0].name} className="h-1/2 w-1/2 object-cover mb-2 md:h-40 md:w-40" />
+        <p className="text-white font-bold text-xs md:text-base">{items[0].name}</p>
         <div className="flex items-center">
-          <p className="text-white-500 font-bold">{items[0].price}</p>
-          <img src={VbucksIcon} alt="vbucks icon" className="h-4 w-4 ml-1" />
+          <p className="text-white-500 font-bold text-xs md:text-lg">{items[0].price}</p>
+          <img src={VbucksIcon} alt="vbucks icon" className="h-4 w-4 ml-1 md:h-6 md:w-6" />
         </div>
       </div>
     </div>
