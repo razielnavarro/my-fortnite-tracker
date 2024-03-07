@@ -21,3 +21,40 @@ body {
       color-scheme: dark;
     }
   }
+/* styles.css (or wherever you manage your global styles) */
+
+/* Custom scrollbar for webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4a5568; /* Adjust the color as needed */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #15171A; /* Adjust the color as needed */
+  border-radius: 8px;
+}
+
+/* Custom scrollbar for Firefox */
+/* Note: These styles may not be as customizable as webkit browsers */
+/* Adjust the colors as needed */
+body {
+  scrollbar-color: #4a5568 #2d3748;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #4a5568;
+  border-radius: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #2d3748;
+  border-radius: 8px;
+}
