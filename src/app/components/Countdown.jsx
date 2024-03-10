@@ -6,8 +6,8 @@ const CountdownTimer = () => {
   const [targetTime, setTargetTime] = useState(getNextResetTime());
 
   function getNextResetTime() {
-    const now = moment().tz('America/New_York');
-    const resetTime = moment().tz('America/New_York').set({ hour: 19, minute: 0, second: 0, millisecond: 0 });
+    const now = moment().tz('America/Chicago');
+    const resetTime = moment().tz('America/Chicago').set({ hour: 19, minute: 0, second: 0, millisecond: 0 });
 
     if (now.isAfter(resetTime)) {
       // If the current time is after the reset time, set the reset time for the next day

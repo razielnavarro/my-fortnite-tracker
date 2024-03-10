@@ -123,18 +123,6 @@ export default function Home() {
     fetchItemShopData();
   }, []);
 
-  // Group items by name
-  const groupedItems = itemShopData && itemShopData.featured
-    ? itemShopData.featured.reduce((groups, item) => {
-      const groupName = item.name;
-      if (!groups[groupName]) {
-        groups[groupName] = [];
-      }
-      groups[groupName].push(item);
-      return groups;
-    }, {})
-    : {};
-
   return (
     <>
       <header>
