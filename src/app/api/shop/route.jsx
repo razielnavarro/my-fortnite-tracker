@@ -10,7 +10,7 @@ export async function GET(req, res) {
           'x-api-key': apiKey
         },
         next: {
-          revalidate: 60
+          revalidate: 3600
         }
       });
   
